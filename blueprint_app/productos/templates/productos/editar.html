@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Producto</h2>
+
+<form method="POST">
+    <p>
+        <label>Nombre del producto:</label><br>
+        <input type="text" name="nombre" value="{{ producto.nombre }}" required>
+    </p>
+
+    <p>
+        <label>Precio:</label><br>
+        <input type="number" name="precio" step="0.01" min="0"
+               value="{{ producto.precio }}" required>
+    </p>
+
+    <p>
+        <label>Stock:</label><br>
+        <input type="number" name="stock" min="0"
+               value="{{ producto.stock }}" required>
+    </p>
+
+    <button type="submit">Actualizar Producto</button>
+
+    <a href="{{ url_for('bp_productos.index') }}">Cancelar</a>
+</form>
+{% endblock %}

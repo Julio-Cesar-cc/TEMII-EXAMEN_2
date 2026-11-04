@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Cliente</h2>
+
+<form method="POST">
+    <p>
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre"
+               value="{{ cliente.nombre }}" required>
+    </p>
+
+    <p>
+        <label>Teléfono:</label><br>
+        <input type="text" name="telefono"
+               value="{{ cliente.telefono }}" required>
+    </p>
+
+    <button type="submit">Actualizar Cliente</button>
+    <a href="{{ url_for('bp_clientes.index') }}">Cancelar</a>
+</form>
+{% endblock %}

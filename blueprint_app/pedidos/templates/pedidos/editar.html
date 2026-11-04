@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Pedido</h2>
+
+<form method="POST">
+
+    <p>
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha"
+               value="{{ pedido.fecha.isoformat() }}" required>
+    </p>
+
+    <p>
+        <label>Cliente:</label><br>
+        <select name="cliente_id" required>
+
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}"
+                    {% if cliente.id == pedido.cliente_id %}selected{% endif %}>
+                    {{ cliente.nombre }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </p>
+
+    <p>
+        <label>Producto:</label><br>
+        <select name="producto_id" required>
+
+            {% for producto in productos %}
+                <option value="{{ producto.id }}"
+                    {% if producto.id == pedido.producto_id %}selected{% endif %}>
+                    {{ producto.nombre }} - Bs {{ producto.precio }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </p>
+
+    <p>
+        <label>Monto:</label><br>
+        <input type="number" name="monto"
+               step="0.01" min="0"
+               value="{{ pedido.monto }}" required>
+    </p>
+
+    <button type="submit">Actualizar Pedido</button>
+
+    <a href="{{ url_for('bp_pedidos.index') }}">Cancelar</a>
+
+</form>
+
+{% endblock %}

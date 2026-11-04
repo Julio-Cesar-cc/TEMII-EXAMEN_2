@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Registrar Nuevo Pedido</h2>
+
+<form method="POST">
+
+    <p>
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha" required>
+    </p>
+
+    <p>
+        <label>Cliente:</label><br>
+        <select name="cliente_id" required>
+            <option value="">Seleccione un cliente</option>
+
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">
+                    {{ cliente.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label>Producto:</label><br>
+        <select name="producto_id" required>
+            <option value="">Seleccione un producto</option>
+
+            {% for producto in productos %}
+                <option value="{{ producto.id }}">
+                    {{ producto.nombre }} - Bs {{ producto.precio }}
+                </option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label>Monto:</label><br>
+        <input type="number" name="monto"
+               step="0.01" min="0" required>
+    </p>
+
+    <button type="submit">Guardar Pedido</button>
+
+    <a href="{{ url_for('bp_pedidos.index') }}">Cancelar</a>
+
+</form>
+
+{% endblock %}

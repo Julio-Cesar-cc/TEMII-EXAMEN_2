@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Registrar Nuevo Cliente</h2>
+
+<form method="POST">
+    <p>
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" required>
+    </p>
+
+    <p>
+        <label>Teléfono:</label><br>
+        <input type="text" name="telefono" required>
+    </p>
+
+    <button type="submit">Guardar Cliente</button>
+    <a href="{{ url_for('bp_clientes.index') }}">Cancelar</a>
+</form>
+{% endblock %}
